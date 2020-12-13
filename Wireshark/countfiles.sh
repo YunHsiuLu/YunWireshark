@@ -4,7 +4,7 @@ do
     sleep $1
     cd data_test
         arr=(*.pcap)
-        echo "Files done: $i"
+        echo "Files done: ${arr[$i]}"
     cd ../
     source pcap2csv.sh ${arr[$i]}
 done
