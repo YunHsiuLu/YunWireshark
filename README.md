@@ -27,4 +27,11 @@ if you are ubuntu user, correct the index in countfiles.sh:
 For running run.sh:
 *   source run.sh [round time] [stop rime]  
 
-**NOTE** for each run, files in data_test and date_testcsn will be removed.  
+**NOTE** for each run, files in data_test and date_testcsn will be removed. 
+
+If you can not do "source run.sh [round time] [stop time]", do the following:
+
+*   goto data_test directory
+*   $ tshark -i {your interface} -b duration:1 -a duration:2 -w testpks.pcap -F pcap
+
+If it appears **permission denied**, you should do "sudo -i" and do again above steps.
