@@ -3,7 +3,8 @@ import os
 import sys
 
 filename = sys.argv[1]
-print(filename)
+#filename = "test00001.csv"
+#print(filename)
 packets_list = []
 path = 'data_testcsv/' + filename
 
@@ -12,4 +13,6 @@ with open(path, newline='') as csvfile:
     for row in rows:
         packets_list.append(row)
 
-print(len(packets_list))
+print(packets_list[-1][0])
+
+
