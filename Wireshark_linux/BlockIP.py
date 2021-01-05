@@ -31,14 +31,11 @@ def blockIP():
             else:
                 ip[packets_list[i][3]] = 1
     
-    temp_c = -99
-    temp_ip = ""
-    for i in list(ip.keys()):
-        if temp_c < ip[i]:
-            temp_c = ip[i]
-            temp_ip = i
-    print("%s: %d" % (temp_ip, temp_c))
-    
+    block_ip = ""
+    # how to block ip below
+
+
+    # block in router
     tn=Telnet("140.168.0.1")
     tn.read_until(b"Username")
     tn.write("root".encode('ascii')+b"\r\n")
@@ -46,7 +43,10 @@ def blockIP():
     tn.write("123456".encode('ascii')+b"\r\n")
     tn.write("conf t".encode('ascii')+b"\r\n")
     tn.write("access-list 10 deny ".encode('ascii'))
-    tn.write(temp_ip.encode('ascii')+b"\r\n")
+    
+    # for loop ip block
+    tn.write(block_ip.encode('ascii')+b"\r\n")
+
     tn.write("access-list 10 permit any".encode('ascii')+b"\r\n")
     tn.write("interface f0/0".encode('ascii')+b"\r\n")
     tn.write("ip access-group 10 in".encode('ascii')+b"\r\n")
