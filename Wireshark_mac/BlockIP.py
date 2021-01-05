@@ -59,4 +59,5 @@ def unblockIP():
     print("hello")
 
 
-blockIP()
+#blockIP()
+print(sys.argv[1])
