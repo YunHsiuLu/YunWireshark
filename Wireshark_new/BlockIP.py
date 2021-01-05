@@ -10,23 +10,22 @@ def check_ip(dic, ip):
         else:
             return False
 
-def blockIP():
-    
-    ip = {}
-    for i in range(len(packets_list)):
-        if i == 0:
-            continue
-        #print (packets_list[i][3])
-        if packets_list[i][3] != "140.168.0.3":
-            if check_ip(ip, packets_list[i][3]):
-                ip[packets_list[i][3]] += 1
-            else:
-                ip[packets_list[i][3]] = 1
-    
+def blockIP(conversations):
     block_ip = ""
     # how to block ip below
 
 
+    ip = {} # count how many packets do IPs send
+    for i in range(len(conversations)):
+        if conversations[i][1] != '192.168.1.150': # change this ip into vm ip
+            if check_ip(ip, conversations[i][1]):
+                ip[conversations[i][1]] += 1
+            else:
+                ip[conversations[i][1]] = 1
+
+    # just for testing
+    return ip
+    """
     # block in router
     tn=Telnet("140.168.0.1")
     tn.read_until(b"Username")
@@ -46,10 +45,35 @@ def blockIP():
     tn.write("exit".encode('ascii')+b"\r\n")
     tn.write("exit".encode('ascii')+b"\r\n")
     tn.read_all()
+    """
+def unblockIP(ip):
+    tn = Telnet('140.168.0.1')
+    tn.read_until(b'Username')
+    tn.write('root'.encode('ascii')+b'\n')
+    tn.read_until(b'Password')
+    tn.write('123456'.encode('ascii')+b'\n')
+    tn.write('show access-list 10'.encode('ascii')+b'\r\n')
+    op = tn.read_until(ip.encode('ascii'))
 
-def unblockIP():
-    print("hello")
+    l = len(ip)
+
+    for i in range(1, 10000):
+        if str(op)[-(l+9+i)] == ' ':
+            print(i - 1)
+            break
+    # for testing
+    print(str(op)[-(l+9+i-1):-(l+9)])
+    iplistnum = str(op)[-(l+9+i-1):-(l+9)]
+    tn.write('conf t'.encode('ascii')+b'\n')
+    tn.write('ip access-list standard 10'.encode('ascii')+b'\n')
+    tn.write('no '.encode('ascii'))
+    tn.write(iplistnum.encode('ascii')+b'\n')
+    tn.write('exit'.encode('ascii')+b'\n')
+    tn.write('exit'.encode('ascii')+b'\n')
+    tn.write('exit'.encode('ascii')+b'\n')
+    tn.read_all()
 
 
-#blockIP()
-print(sys.argv[1])
+def test():
+    print("testing......")
+
