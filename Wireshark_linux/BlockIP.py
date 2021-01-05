@@ -16,26 +16,27 @@ def blockIP():
     packets_list =[]
     path = 'data_testcsv/' + filename
     with open(path, newline='') as csvfile:
-    rows = csv.reader(csvfile, delimiter=',')
-    for row in rows:
-    packets_list.append(row)
+        rows = csv.reader(csvfile, delimiter=',')
+        for row in rows:
+            packets_list.append(row)
     
     ip = {}
     for i in range(len(packets_list)):
-    if i == 0:
-    continue
-    #print (packets_list[i][3])
-    if packets_list[i][3] != "140.168.0.3":
-    if check_ip(ip, packets_list[i][3]):
-    ip[packets_list[i][3]] += 1
-    else:
-    ip[packets_list[i][3]] = 1
+        if i == 0:
+            continue
+        #print (packets_list[i][3])
+        if packets_list[i][3] != "140.168.0.3":
+            if check_ip(ip, packets_list[i][3]):
+                ip[packets_list[i][3]] += 1
+            else:
+                ip[packets_list[i][3]] = 1
+    
     temp_c = -99
     temp_ip = ""
     for i in list(ip.keys()):
-    if temp_c < ip[i]:
-    temp_c = ip[i]
-    temp_ip = i
+        if temp_c < ip[i]:
+            temp_c = ip[i]
+            temp_ip = i
     print("%s: %d" % (temp_ip, temp_c))
     
     tn=Telnet("140.168.0.1")
