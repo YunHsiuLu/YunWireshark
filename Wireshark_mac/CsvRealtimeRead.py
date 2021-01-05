@@ -13,6 +13,4 @@ with open(path, newline='') as csvfile:
     for row in rows:
         packets_list.append(row)
 
-print(packets_list[-1][0])
-
-
+print(packets_list[-1][0], filename)
