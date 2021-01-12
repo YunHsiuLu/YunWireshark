@@ -1,6 +1,6 @@
 dur_b=$1
 cycle=$2
-echo "round: $dur_b s, stop: $dur_a s, files: $files"
+echo "round: $dur_b s, cycles: $cycle files"
 
 rm -rf data_test/*
 echo ""
