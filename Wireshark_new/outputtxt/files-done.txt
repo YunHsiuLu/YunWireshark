@@ -1,1 +1,10 @@
-files done: 1 	TCP/UDP capture size: 7
+files done: 1 	TCP/UDP capture size: 1
+files done: 2 	TCP/UDP capture size: 0
+files done: 3 	TCP/UDP capture size: 4
+files done: 4 	TCP/UDP capture size: 2
+files done: 5 	TCP/UDP capture size: 9
+files done: 6 	TCP/UDP capture size: 3
+files done: 7 	TCP/UDP capture size: 1
+files done: 8 	TCP/UDP capture size: 1
+files done: 9 	TCP/UDP capture size: 0
+files done: 10 	TCP/UDP capture size: 4
